@@ -10,7 +10,7 @@ const firebaseConfig = {
 };
 
 // تهيئة Firebase
-const app = firebase.initializeApp(firebaseConfig);
+firebase.initializeApp(firebaseConfig);
 const db = firebase.firestore();
 
 // بيانات النظام
@@ -154,7 +154,7 @@ function logout() {
     localStorage.removeItem('currentUser');
     document.getElementById('loginSection').style.display = 'block';
     document.getElementById('mainContent').style.display = 'none';
-    showNotification('تم تسجيل الخروج بنجاح', 'info');
+    showNotification('تم تسجيل الخروج بنgاح', 'info');
 }
 
 function updateUserInterface() {
