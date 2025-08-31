@@ -874,33 +874,37 @@ function updateAssignmentSelects() {
 }
 
 // تهيئة التطبيق عند تحميل الصفحة
-document.addEventListener('DOMContentLoaded', function() {
+function initializeMainContent() {
+    document.getElementById("logoutBtn").addEventListener("click", logout);
+    document.getElementById("addEmployeeBtn").addEventListener("click", addEmployee);
+    document.getElementById("addInventoryBtn").addEventListener("click", addInventoryItem);
+    document.getElementById("addAssignmentBtn").addEventListener("click", addAssignment);
+    document.getElementById("clearDataBtn").addEventListener("click", clearAllData);
+    document.getElementById("exportBtn").addEventListener("click", exportToExcel);
+    document.getElementById("importBtn").addEventListener("change", handleFileImport);
+    document.getElementById("generateInventoryReportBtn").addEventListener("click", generateInventoryReport);
+    document.getElementById("generateAssignmentReportBtn").addEventListener("click", generateAssignmentReport);
+
+    // إظهار التبويب الأول افتراضياً
+    showTab("dashboard");
+
+    console.log("تم تهيئة محتوى الصفحة الرئيسية بنجاح");
+}
+
+document.addEventListener("DOMContentLoaded", function() {
+    // ربط الأحداث
+    document.getElementById("loginBtn").addEventListener("click", login);
+
     // التحقق من وجود مستخدم مسجل دخوله مسبقاً
-    const savedUser = localStorage.getItem('currentUser');
+    const savedUser = localStorage.getItem("currentUser");
     if (savedUser) {
         currentUser = JSON.parse(savedUser);
-        document.getElementById('loginSection').style.display = 'none';
-        document.getElementById('mainContent').style.display = 'block';
+        document.getElementById("loginSection").style.display = "none";
+        document.getElementById("mainContent").style.display = "block";
         updateUserInterface();
         loadAllData();
+        initializeMainContent(); // تهيئة محتوى الصفحة الرئيسية
     }
-    
-    // ربط الأحداث
-    document.getElementById('loginBtn').addEventListener('click', login);
-    document.getElementById('logoutBtn').addEventListener('click', logout);
-    document.getElementById('addEmployeeBtn').addEventListener('click', addEmployee);
-    document.getElementById('addInventoryBtn').addEventListener('click', addInventoryItem);
-    document.getElementById('addAssignmentBtn').addEventListener('click', addAssignment);
-    document.getElementById('clearDataBtn').addEventListener('click', clearAllData);
-    document.getElementById('exportBtn').addEventListener('click', exportToExcel);
-    document.getElementById('importBtn').addEventListener('change', handleFileImport);
-    document.getElementById('generateInventoryReportBtn').addEventListener('click', generateInventoryReport);
-    document.getElementById('generateAssignmentReportBtn').addEventListener('click', generateAssignmentReport);
-    
-    // إظهار التبويب الأول افتراضياً
-    showTab('dashboard');
-    
-    console.log('تم تحميل النظام بنجاح');
 });
 
 // وظائف إضافية للتحكم في الواجهة
